@@ -11,7 +11,6 @@ import (
 // Template for <slug>.go
 const solutionTemplate = `package problems
 
-// {{ .FuncName }} is ...
 func {{ .FuncName }}() {
 	// TODO: implement
 }
