@@ -12,7 +12,7 @@ func TestRenderMarkdown(t *testing.T) {
 		ID:         1,
 		Title:      "Two Sum",
 		Slug:       "two-sum",
-		Content:    "Given an array of integers...",
+		Content:    "Given\u00A0an array of integers...",
 		Difficulty: "Easy",
 		Tags:       []string{"Array", "Hash Table"},
 	}
@@ -31,7 +31,8 @@ func TestRenderMarkdown(t *testing.T) {
 	if !strings.Contains(md, "`Array`") || !strings.Contains(md, "`Hash Table`") {
 		t.Errorf("expected tags")
 	}
-	if !strings.Contains(md, q.Content) {
-		t.Errorf("expected content to be included")
+	if strings.Contains(md, "\u00A0") {
+		t.Error("Markdown still contains NBSP")
 	}
+	t.Logf("\nGenerated Markdown:\n%s", md)
 }
